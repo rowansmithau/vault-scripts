@@ -1,3 +1,5 @@
+# An adjusted version of an existing script. I found the poetry commands are not required for use.
+
 # poetry init -n
 # poetry config virtualenvs.in-project true --local
 # poetry add aiohttp[speedups]
@@ -9,13 +11,15 @@ import random
 from uuid import uuid4
 import base64
 
-vault_token = ""
+vault_token = "hvs.ne8Xs59s172kMr1NiKHj2hLU"
 number_of_keys = 1000000
+kv_mountpoint = "kv"
 
 randbyte_block = str(base64.b64encode(random.randbytes(4096)))
 
-with open('current_root_token') as f:
-    vault_token = f.read().strip()
+# if you would like to read the token from the file on disk called `current_root_token`, uncomment the below lines.
+#with open('current_root_token') as f:
+#    vault_token = f.read().strip()
 
 
 async def load():
@@ -31,7 +35,7 @@ async def load():
                 }
             }
 
-            async with session.post(f'/v1/kv/data/{uuid4()}?version=2', headers=headers, json=data) as r:
+            async with session.post(f'/v1/{kv_mountpoint}/data/{uuid4()}?version=2', headers=headers, json=data) as r:
                 print('.', end='', flush=True)
 
 
