@@ -1,4 +1,6 @@
 # An adjusted version of an existing script. I found the poetry commands are not required for use.
+# Works with python@3.10 via brew
+# May also require `python3 -m pip install aiohttp`
 
 # poetry init -n
 # poetry config virtualenvs.in-project true --local
@@ -11,9 +13,9 @@ import random
 from uuid import uuid4
 import base64
 
-vault_token = "hvs.ne8Xs59s172kMr1NiKHj2hLU"
+vault_token = "hvs.TTngQNVPxAhJbwbqcuZr0us6"
 number_of_keys = 1000000
-kv_mountpoint = "kv"
+kv_mountpoint = "test-kv-mount"
 
 randbyte_block = str(base64.b64encode(random.randbytes(4096)))
 
