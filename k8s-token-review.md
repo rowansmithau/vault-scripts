@@ -1,5 +1,11 @@
 submit to token review endpoint with a valid token (replace `xyz` with a token which has the `system:auth-delegator` role.
 
+```
+kubectl create clusterrolebinding vault-client-auth-delegator \
+    --clusterrole=system:auth-delegator \
+    --serviceaccount=default:svcaccount1
+```
+
 `curl -v http://your-kube-api-server:6443/apis/authentication.k8s.io/v1/tokenreviews -X POST -H 'Content-Type: application/json; chatset=utf-8' -H 'Authorization: Bearer xyz' -d @k8s-token-review.json`
 
 ```
