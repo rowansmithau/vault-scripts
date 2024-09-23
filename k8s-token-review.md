@@ -1,7 +1,8 @@
-# submit to token review endpoint with a valid token
-# :6443/apis/authentication.k8s.io/v1/tokenreviews -X POST -H 'Content-Type: application/json; chatset=utf-8' -d @k8s-token-review.json
-# JSON doesn't support comments to ensure you remove these lines!!!!
+submit to token review endpoint with a valid token (replace `xyz` with a token which has the `system:auth-delegator` role.
 
+`curl -v http://your-kube-api-server:6443/apis/authentication.k8s.io/v1/tokenreviews -X POST -H 'Content-Type: application/json; chatset=utf-8' -H 'Authorization: Bearer xyz' -d @k8s-token-review.json`
+
+```
 {
   "kind": "TokenReview",
   "apiVersion": "authentication.k8s.io/v1",
@@ -15,3 +16,4 @@
     "user": {}
   }
 }
+```
